@@ -150,6 +150,18 @@ def all_students_tuple_list(filename):
     student_list = []
 
     # Code goes here
+    file = open(filename)
+    for line in file:
+        split_file = line.rstrip()
+        split_file = split_file.split('|')
+        first, last, house, advisor, cohort = split_file
+        full_name = first + " " + last
+        new_entry = (full_name, house, advisor, cohort)
+        
+        if split_file[4] != 'I' and split_file[4] != 'G':
+
+            student_list.append(new_entry)
+
 
     return student_list
 
