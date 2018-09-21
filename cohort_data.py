@@ -9,21 +9,17 @@ def unique_houses(filename):
 
     For example:
 
-    >>> sorted(unique_houses("cohort_data.txt"))
+    >>> (unique_houses("cohort_data.txt"))
     ["Dumbledore's Army", 'Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
 
     """
     file = open(filename)
-     # [first, last, house, advisor, cohort]
     houses = set()
     for line in file:
         line.rstrip()
         split_file = line.split('|')
         if split_file[2] != "":
             houses.add(split_file[2])
-
-    
-    # Code goes here
 
     return houses
 
@@ -49,7 +45,34 @@ def sort_by_cohort(filename):
     fall_15 = []
     ghosts = []
 
-    # Code goes here
+    file = open(filename)
+    houses = set()
+    for line in file:
+        split_file = line.rstrip()
+        split_file = split_file.split('|')
+        name = ' '.join(split_file[:2])
+
+        if split_file[4] != 'I':
+
+            if split_file[4] == 'G':
+                ghosts.append(name)
+
+            elif split_file[4] == 'Spring 2016':
+                spring_16.append(name)
+
+            elif split_file[4] == 'Winter 2016':
+                winter_16.append(name)
+
+            elif split_file[4] == 'Summer 2016':
+                summer_16.append(name)
+
+            elif split_file[4] == 'Fall 2015':
+                fall_15.append(name)
+
+
+    new_list = [(fall_15), (winter_16), (spring_16), (summer_16), (ghosts)]
+    all_students.extend(new_list)
+
 
     return all_students
 
@@ -57,7 +80,7 @@ def sort_by_cohort(filename):
 def hogwarts_by_house(filename):
     """TODO: Sort students into lists by house and return all lists in one list.
 
-    Iterate over the data to create an alphabeticaly sorted list for each
+    Iterate over the data to create an alphabeticaly  list for each
     house, and sorts students into their appropriate houses by last name. Sorts
     ghosts into a list called "ghosts" and instructors into a list called
     "instructors". Add them, in that order, to your list of houses.
@@ -191,7 +214,6 @@ def find_house_members_by_student_name(student_list):
 ##############################################################################
 # END OF MAIN EXERCISE.  Yay!  You did it! You Rock!
 #
-
 
 
 if __name__ == "__main__":
