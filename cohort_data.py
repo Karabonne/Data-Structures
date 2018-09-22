@@ -9,8 +9,9 @@ def unique_houses(filename):
 
     For example:
 
-    >>> (unique_houses("cohort_data.txt"))
-    ["Dumbledore's Army", 'Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
+    >>> test_list = {"Dumbledore's Army", 'Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'}
+    >>> test_list == unique_houses("cohort_data.txt")
+    True
 
     """
     file = open(filename)
@@ -157,7 +158,7 @@ def all_students_tuple_list(filename):
         first, last, house, advisor, cohort = split_file
         full_name = first + " " + last
         new_entry = (full_name, house, advisor, cohort)
-        
+
         if split_file[4] != 'I' and split_file[4] != 'G':
 
             student_list.append(new_entry)
@@ -186,10 +187,16 @@ def find_cohort_by_student_name(student_list):
 
     """
 
-    # Code goes here
 
-    return "Student not found."
+    student_inquiry = input("Who are you looking for? ").title()
 
+    big_student_list = all_students_tuple_list(student_list)
+    for item in range(len(big_student_list)):
+        if big_student_list[item][0] == student_inquiry:
+            print(f"{big_student_list[item][0]} was in the {big_student_list[item][3]} cohort.")
+            return
+        else:
+            return "Student not found."
 
 ##########################################################################################
 # Further Study Questions
@@ -248,7 +255,7 @@ def find_house_members_by_student_name(student_list):
 #############################################################################
 # Here is some useful code to run these functions without doctests!
 
-#find_cohort_by_student_name(all_students_data)
+find_cohort_by_student_name("cohort_data.txt")
 # find_house_members_by_student_name(all_students_data)
 
 
